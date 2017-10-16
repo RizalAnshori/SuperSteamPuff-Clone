@@ -7,7 +7,7 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
 
     [SerializeField]
     string weaponId;
-    string weaponOwner;
+    public Transform weaponOwnerPos;
     public GameObject bullet;
     public Transform[] bulletSpawnPosition;
 
@@ -20,15 +20,7 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
             return weaponId;
         }
     }
-
-    public string WeaponOwner
-    {
-        set
-        {
-            this.weaponOwner = value;
-        }
-    }
-
+    
     public void Shoot()
     {
         for(int i = 0; i<bulletSpawnPosition.Length; i++)
@@ -38,13 +30,13 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
             {
                 bulletObj.transform.position = bulletSpawnPosition[i].position;
                 bulletObj.transform.rotation = bulletSpawnPosition[i].rotation;
-                bulletObj.GetComponent<BulletModel>().owner = weaponOwner;
+                bulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
                 bulletObj.SetActive(true);
             }
             else
             {
                 GameObject newBulletObj = (GameObject)Instantiate(bullet, bulletSpawnPosition[i].position, bulletSpawnPosition[i].rotation);
-                newBulletObj.GetComponent<BulletModel>().owner = weaponOwner;
+                newBulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
                 bulletPool.Add(newBulletObj);
             }
         }

@@ -8,7 +8,6 @@ public class PowerUpMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -18,6 +17,6 @@ public class PowerUpMovement : MonoBehaviour {
 
     void Move()
     {
-        transform.Translate(Vector3.down*powerUpSpeed*Time.deltaTime);
+        transform.Translate(Vector3.down * powerUpSpeed * Time.deltaTime);
     }
 }

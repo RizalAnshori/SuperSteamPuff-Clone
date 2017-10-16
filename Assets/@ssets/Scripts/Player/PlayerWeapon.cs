@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour {
 
-    public string weaponOwner;
+    public Transform weaponOwnerPos;
     public IWeapon activeWeapon;
     //public List<IWeapon> weapons = new List<IWeapon>();
     //GameObject weapon = weapons[i] as GameObject;
@@ -39,18 +39,18 @@ public class PlayerWeapon : MonoBehaviour {
         {
             var weapon = Instantiate(weaponPrefabs[i], this.transform);
             weapons.Add(weapon);
+            weapon.GetComponent<NormalWeapon>().weaponOwnerPos = weaponOwnerPos;
             weapon.SetActive(false);
         }
     }
 
-    void SetActiveWeapon(string weaponId)
+    public void SetActiveWeapon(string weaponId)
     {
         for(int i = 0; i< weapons.Count;i++)
         {
             var weapon = weapons[i].GetComponent<IWeapon>();
             if (weapon.WeaponId == weaponId)
             {
-                weapon.WeaponOwner = weaponOwner;
                 weapons[i].SetActive(true);
                 activeWeapon = weapon;
             }
@@ -60,5 +60,6 @@ public class PlayerWeapon : MonoBehaviour {
     public void Shoot()
     {
         activeWeapon.Shoot();
+        SetActiveWeapon("normal");
     }
 }

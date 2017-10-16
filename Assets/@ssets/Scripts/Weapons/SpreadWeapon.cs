@@ -7,7 +7,6 @@ public class SpreadWeapon : MonoBehaviour,IWeapon {
 
     [SerializeField]
     string weaponId;
-    string weaponOwner;
     public GameObject bullet;
     public Transform[] bulletSpawnPosition;
 
@@ -18,14 +17,6 @@ public class SpreadWeapon : MonoBehaviour,IWeapon {
         get
         {
             return weaponId;
-        }
-    }
-
-    public string WeaponOwner
-    {
-        set
-        {
-            WeaponOwner = weaponOwner;
         }
     }
 

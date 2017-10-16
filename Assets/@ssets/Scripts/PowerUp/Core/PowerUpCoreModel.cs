@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpModel : MonoBehaviour {
-
-    public string powerUpType;
+public class PowerUpCoreModel : MonoBehaviour {
     public Transform target;
+    public string type;
 }

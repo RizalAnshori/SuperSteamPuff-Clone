@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1967307542312680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.973, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4790428626104086}
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponId: spread
+  weaponOwnerPos: {fileID: 0}
   bullet: {fileID: 1978342437602702, guid: bb88ecbd4a2312043bcaa208e30ca7fd, type: 2}
   bulletSpawnPosition:
   - {fileID: 4790428626104086}

@@ -16,7 +16,11 @@ public class BulletInteraction : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag != GetComponent<BulletModel>().owner)
+        if(other.gameObject.CompareTag("PowerUp"))
+        {
+            var powerUpModel = other.gameObject.GetComponent<PowerUpModel>();
+            powerUpModel.target = GetComponent<BulletModel>().owner;
+        }
         gameObject.SetActive(false);
     }
 

@@ -5,5 +5,5 @@ using UnityEngine;
 public class BulletModel : MonoBehaviour {
 
     public int Damage;
-    public string owner;
+    public Transform owner;
 }

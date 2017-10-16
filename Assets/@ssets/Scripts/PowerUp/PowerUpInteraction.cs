@@ -6,8 +6,8 @@ public class PowerUpInteraction : MonoBehaviour {
 
     public GameObject powerUpCore;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,15 +18,11 @@ public class PowerUpInteraction : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == 8)
+        if(other.gameObject.CompareTag("Bullet"))
         {
-            //Physics2D.IgnoreLayerCollision(8, 8, true);
-            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
-        }
-        
-        if(other.gameObject.GetComponent<BulletModel>().owner == "Player")
-        {
-
+            var powerUpCoreGameObject = Instantiate(powerUpCore,this.transform.position,Quaternion.identity);
+            powerUpCoreGameObject.GetComponent<PowerUpCoreModel>().target = GetComponent<PowerUpModel>().target;
+            this.gameObject.SetActive(false);
         }
     }
 }
