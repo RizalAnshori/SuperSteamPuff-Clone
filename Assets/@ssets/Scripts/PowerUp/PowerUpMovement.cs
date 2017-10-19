@@ -8,6 +8,10 @@ public class PowerUpMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if(transform.position.y < 0)
+        {
+            powerUpSpeed *= -1;
+        }
 	}
 	
 	// Update is called once per frame

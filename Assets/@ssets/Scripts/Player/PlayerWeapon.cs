@@ -8,10 +8,10 @@ public class PlayerWeapon : MonoBehaviour {
     public IWeapon activeWeapon;
     //public List<IWeapon> weapons = new List<IWeapon>();
     //GameObject weapon = weapons[i] as GameObject;
-    public List<GameObject> weaponPrefabs = new List<GameObject>();
+    public string defaultWeaponId = "normal";
 
-    List<GameObject> weapons = new List<GameObject>();
-    string defaultWeaponId = "normal";
+    //List<GameObject> weapons = new List<GameObject>();
+    Dictionary<string, GameObject> weapons = new Dictionary<string, GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -35,31 +35,29 @@ public class PlayerWeapon : MonoBehaviour {
 
     void InstantiateWeapon()
     {
-        for(int i = 0; i< weaponPrefabs.Count; i++)
+        for(int i = 0; i< GameData.Instance.weaponPrefabs.Count; i++)
         {
-            var weapon = Instantiate(weaponPrefabs[i], this.transform);
-            weapons.Add(weapon);
-            weapon.GetComponent<NormalWeapon>().weaponOwnerPos = weaponOwnerPos;
+            var weapon = Instantiate(GameData.Instance.weaponPrefabs[i], this.transform);
+            var Iweapon = weapon.GetComponent<IWeapon>();
+            //weapon.GetComponent<IWeapon>().OwnerPos = weaponOwnerPos;
             weapon.SetActive(false);
+            weapons.Add(Iweapon.WeaponId, weapon);
         }
     }
 
     public void SetActiveWeapon(string weaponId)
     {
-        for(int i = 0; i< weapons.Count;i++)
+        if(weapons.ContainsKey(weaponId))
         {
-            var weapon = weapons[i].GetComponent<IWeapon>();
-            if (weapon.WeaponId == weaponId)
-            {
-                weapons[i].SetActive(true);
-                activeWeapon = weapon;
-            }
+            activeWeapon = weapons[weaponId].GetComponent<IWeapon>();
+            activeWeapon.OwnerPos = weaponOwnerPos;
+            weapons[weaponId].SetActive(true);
         }
     }
     
     public void Shoot()
     {
         activeWeapon.Shoot();
-        SetActiveWeapon("normal");
+        //SetActiveWeapon("normal");
     }
 }

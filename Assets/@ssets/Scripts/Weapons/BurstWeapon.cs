@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalWeapon : MonoBehaviour,IWeapon {
-
+public class BurstWeapon : MonoBehaviour, IWeapon
+{
     public Transform weaponOwnerPos;
 
     [SerializeField]string weaponId;
-    [SerializeField]GameObject normalBullet;
+    [SerializeField]GameObject burstBullet;
     [SerializeField]Transform bulletSpawnPosition;
-    [SerializeField]float coolDownTime;
+    [SerializeField]float burstSpeed;
+    [SerializeField]int bulletAmount;
 
     private float timer;
     private List<GameObject> bulletPool = new List<GameObject>();
@@ -37,25 +37,25 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
 
     void Start()
     {
-        timer = coolDownTime;
+        timer = burstSpeed;
     }
 
     void Update()
     {
         timer -= Time.deltaTime;
     }
-    
+
     public void Shoot()
     {
-        Normal();
+        StartCoroutine(Burst());
     }
 
-    void Normal()
+    IEnumerator Burst()
     {
-        if (isReadyToShoot())
+        for(int i = 0; i<bulletAmount;i++)
         {
             GameObject bulletObj = GetPooledBullet();
-            if (bulletObj != null)
+            if(bulletObj!=null)
             {
                 bulletObj.transform.position = bulletSpawnPosition.position;
                 bulletObj.transform.rotation = bulletSpawnPosition.rotation;
@@ -64,28 +64,18 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
             }
             else
             {
-                GameObject newBulletObj = (GameObject)Instantiate(normalBullet, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
-                newBulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                GameObject newBulletObj = (GameObject)Instantiate(burstBullet, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
                 bulletPool.Add(newBulletObj);
             }
-            timer = coolDownTime;
+            yield return new WaitForSeconds(burstSpeed);
         }
-    }
-
-    bool isReadyToShoot()
-    {
-        if(timer<0)
-        {
-            return true;
-        }
-        return false;
     }
 
     GameObject GetPooledBullet()
     {
-        for(int i = 0; i<bulletPool.Count; i++)
+        for (int i = 0; i < bulletPool.Count; i++)
         {
-            if(!bulletPool[i].gameObject.activeSelf)
+            if (!bulletPool[i].gameObject.activeSelf)
             {
                 return bulletPool[i].gameObject;
             }

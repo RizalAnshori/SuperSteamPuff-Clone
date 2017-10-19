@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840cbb8e30b90e5458317b25489d8b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 114093900221559478}
 --- !u!114 &114651465826557434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ba7877818bfcd44b6a04fb24a55db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 114093900221559478}
+  isClockWise: 0
 --- !u!212 &212316735250684158
 SpriteRenderer:
   m_ObjectHideFlags: 1
