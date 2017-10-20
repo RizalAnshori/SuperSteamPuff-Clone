@@ -24,7 +24,10 @@ public class Movement : MonoBehaviour {
 
     public void MoveUp()
     {
-        rigidBody.AddForce(transform.up * forcePower, ForceMode2D.Force);
+        //rigidBody.AddForce(transform.up * forcePower*Time.deltaTime, ForceMode2D.Impulse);
+        rigidBody.AddForce(new Vector2(0, forcePower));
+        rigidBody.velocity = new Vector2(0, 5);
+        Debug.Log("velocity : "+rigidBody.velocity);
     }
 
     public void Dash()

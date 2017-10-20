@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PowerUpInteraction : MonoBehaviour {
 
-    public PowerUpCoreModel powerUpCore;
-
-    PowerUpModel model;
+    [SerializeField]PowerUpModel model;
 
     // Use this for initialization
     void Start () {
-        model = GetComponent<PowerUpModel>();
+        //model = GetComponent<PowerUpModel>();
 	}
 	
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Bullet"))
         {
-            powerUpCore.target = model.target;
-            GameObject powerUpCoreGameObject = (GameObject)Instantiate(powerUpCore.gameObject,this.transform.position,Quaternion.identity);
-            //powerUpCoreGameObject.GetComponent<PowerUpCoreModel>().target = GetComponent<PowerUpModel>().target;
+            model.isHit = true;
+        }
+        else if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponentInChildren<IWeaponHolder>().SetActiveWeapon(model.powerUpType);
+            model.isHit = false;
             this.gameObject.SetActive(false);
         }
     }

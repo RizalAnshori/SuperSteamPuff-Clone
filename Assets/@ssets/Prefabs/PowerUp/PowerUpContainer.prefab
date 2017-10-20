@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212989327579840744}
   - component: {fileID: 50719588879151476}
   - component: {fileID: 58355621220066486}
-  - component: {fileID: 114937014514843482}
   - component: {fileID: 114685425825614816}
+  - component: {fileID: 114937014514843482}
   - component: {fileID: 114517208950722040}
   - component: {fileID: 114128054144195138}
   m_Layer: 9
@@ -93,8 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 114685425825614816}
-  spriteRenderer: {fileID: 212989327579840744}
-  delayChangeType: 5
 --- !u!114 &114517208950722040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,8 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e55397c65378c42a4bf60506a47016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpCore: {fileID: 114093900221559478, guid: 4d629e5a0f36bf44090ac8ae66f267e4,
-    type: 2}
+  model: {fileID: 114685425825614816}
 --- !u!114 &114685425825614816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,8 +116,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f984bed18436e5549861e125dd85ead0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: spread
+  powerUpType: 
+  isHit: 0
+  spriteRenderer: {fileID: 212989327579840744}
+  delayChangeType: 5
   target: {fileID: 0}
+  floatingSpeed: 0.3
+  chaseSpeed: 15
+  turningSpeed: 7.5
 --- !u!114 &114937014514843482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebfb066113b49849a8c03d6cd0993ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpSpeed: 0.2
+  model: {fileID: 114685425825614816}
 --- !u!212 &212989327579840744
 SpriteRenderer:
   m_ObjectHideFlags: 1

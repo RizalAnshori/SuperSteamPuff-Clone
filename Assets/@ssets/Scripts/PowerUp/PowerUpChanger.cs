@@ -5,35 +5,33 @@ using UnityEngine;
 public class PowerUpChanger : MonoBehaviour {
 
     [SerializeField]PowerUpModel model;
-    [SerializeField]SpriteRenderer spriteRenderer;
-    [SerializeField]float delayChangeType;
 
     private float timer;
 
     // Use this for initialization
-    void Start () {
+    void OnEnable () {
         Init();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(isChangeTime())
+        if(isChangeTime() && !model.isHit)
         {
             ChangeType();
-            timer = delayChangeType;
+            timer = model.delayChangeType;
         }
     }
 
     void Init()
     {
-        timer = delayChangeType;
+        timer = model.delayChangeType;
         ChangeType();
     }
 
     void ChangeType()
     {
-        int index = (Random.Range(0, GameData.Instance.powerUpData.Count*10)) % GameData.Instance.powerUpData.Count ;
-        spriteRenderer.sprite = GameData.Instance.powerUpData[index].sprite;
+        int index = (Random.Range(0, GameData.Instance.powerUpData.Count*100)) % GameData.Instance.powerUpData.Count ;
+        model.spriteRenderer.sprite = GameData.Instance.powerUpData[index].sprite;
         model.powerUpType = GameData.Instance.powerUpData[index].type;
     }
 

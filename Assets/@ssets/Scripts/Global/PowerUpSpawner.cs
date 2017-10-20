@@ -37,8 +37,9 @@ public class PowerUpSpawner : MonoBehaviour {
         GameObject powerUpObj = GetPooledPowerUp();
         if(powerUpObj != null)
         {
-            powerUpObj.SetActive(true);
             powerUpObj.transform.position = SpawnPosisiton();
+            powerUpObj.transform.rotation = this.transform.rotation;
+            powerUpObj.SetActive(true);
         }
         else
         {

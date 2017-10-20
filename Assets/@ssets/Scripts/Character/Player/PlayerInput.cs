@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
 
-    public Movement movementScript;
-    public PlayerWeapon playerWeapon;
+    [SerializeField]Movement movementScript;
+    public IWeaponHolder playerWeapon;
 
-	// Use this for initialization
-	void Start () {
-		
+    bool isPlayerAddForce;
+    // Use this for initialization
+    void OnEnable () {
+        playerWeapon = GetComponentInChildren<IWeaponHolder>();
 	}
 	
 	// Update is called once per frame
@@ -17,14 +18,18 @@ public class PlayerInput : MonoBehaviour {
         poolInput();
 	}
 
+    void FixedUpdate()
+    {
+        if (isPlayerAddForce) movementScript.MoveUp();
+    }
+
     void poolInput()
     {
         var isPlayerShoot = Input.GetKeyDown(KeyCode.Space);
-        var isPlayerAddForce = Input.GetMouseButton(0); //harusnya bisa ditahan buttonnya
+        isPlayerAddForce = Input.GetMouseButton(0); //harusnya bisa ditahan buttonnya
         var isPlayerDash = Input.GetMouseButtonDown(1);
 
         if (isPlayerDash) movementScript.Dash();
-        if (isPlayerAddForce) movementScript.MoveUp();
         if (isPlayerShoot) playerWeapon.Shoot();
     }
 }
