@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4090845051013316}
-  - component: {fileID: 114857192297614492}
+  - component: {fileID: 114663171141734480}
   - component: {fileID: 114293945384828000}
   - component: {fileID: 50292627812301086}
   m_Layer: 0
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashLenght: 0
   forcePower: 40
+  velocity: 5
 --- !u!114 &114528450414605482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponOwnerPos: {fileID: 4090845051013316}
   defaultWeaponId: normal
---- !u!114 &114857192297614492
+--- !u!114 &114663171141734480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,10 +183,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965642396465886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 042fc3eeadfdf954d886fba2a5536277, type: 3}
+  m_Script: {fileID: 11500000, guid: 47f0bfd5f9085eb458262c9bb9c1e52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementScript: {fileID: 114293945384828000}
+  playerPos: {fileID: 0}
+  delayShot: 8
+  offSet: 0.5
 --- !u!212 &212668359833729282
 SpriteRenderer:
   m_ObjectHideFlags: 1

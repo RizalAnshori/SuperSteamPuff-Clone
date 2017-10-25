@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
 
-    [SerializeField]
-    float dashLenght;
+    [SerializeField,Tooltip("Used for Dash, if it's Enemy set the value in negative")]
+    float dashLenght = 1.5f;
     [SerializeField]
     float forcePower;
+    [SerializeField]
+    float velocity;
     Rigidbody2D rigidBody;
 
     bool isInFront;
@@ -24,22 +26,24 @@ public class Movement : MonoBehaviour {
 
     public void MoveUp()
     {
-        //rigidBody.AddForce(transform.up * forcePower*Time.deltaTime, ForceMode2D.Impulse);
+        //rigidBody.AddForce(transform.up * forcePower*Time.deltaTime, ForceMode2D.Force);
         rigidBody.AddForce(new Vector2(0, forcePower));
-        rigidBody.velocity = new Vector2(0, 5);
-        Debug.Log("velocity : "+rigidBody.velocity);
+        if (rigidBody.velocity.y > velocity)
+        {
+            rigidBody.velocity = new Vector2(0, velocity);
+        }
     }
 
     public void Dash()
     {
         if(!isInFront)
         {
-            transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y);
+            transform.position = new Vector2(transform.position.x + dashLenght, transform.position.y);
             isInFront = true;
         }
         else
         {
-            transform.position = new Vector2(transform.position.x - 1.5f, transform.position.y);
+            transform.position = new Vector2(transform.position.x - dashLenght, transform.position.y);
             isInFront = false;
         }
     }

@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashLenght: 0
   forcePower: 40
+  velocity: 5
 --- !u!212 &212523543085389286
 SpriteRenderer:
   m_ObjectHideFlags: 1

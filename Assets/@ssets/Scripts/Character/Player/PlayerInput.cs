@@ -7,7 +7,6 @@ public class PlayerInput : MonoBehaviour {
     [SerializeField]Movement movementScript;
     public IWeaponHolder playerWeapon;
 
-    bool isPlayerAddForce;
     // Use this for initialization
     void OnEnable () {
         playerWeapon = GetComponentInChildren<IWeaponHolder>();
@@ -18,18 +17,14 @@ public class PlayerInput : MonoBehaviour {
         poolInput();
 	}
 
-    void FixedUpdate()
-    {
-        if (isPlayerAddForce) movementScript.MoveUp();
-    }
-
     void poolInput()
     {
         var isPlayerShoot = Input.GetKeyDown(KeyCode.Space);
-        isPlayerAddForce = Input.GetMouseButton(0); //harusnya bisa ditahan buttonnya
+        var isPlayerAddForce = Input.GetMouseButton(0); //harusnya bisa ditahan buttonnya
         var isPlayerDash = Input.GetMouseButtonDown(1);
 
         if (isPlayerDash) movementScript.Dash();
         if (isPlayerShoot) playerWeapon.Shoot();
+        if (isPlayerAddForce) movementScript.MoveUp();
     }
 }
