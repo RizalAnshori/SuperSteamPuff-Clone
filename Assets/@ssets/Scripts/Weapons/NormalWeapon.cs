@@ -60,12 +60,14 @@ public class NormalWeapon : MonoBehaviour,IWeapon {
                 bulletObj.transform.position = bulletSpawnPosition.position;
                 bulletObj.transform.rotation = bulletSpawnPosition.rotation;
                 bulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                bulletObj.tag = this.gameObject.tag;
                 bulletObj.SetActive(true);
             }
             else
             {
                 GameObject newBulletObj = (GameObject)Instantiate(normalBullet, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
                 newBulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                newBulletObj.tag = this.gameObject.tag;
                 bulletPool.Add(newBulletObj);
             }
             timer = coolDownTime;

@@ -60,11 +60,13 @@ public class BurstWeapon : MonoBehaviour, IWeapon
                 bulletObj.transform.position = bulletSpawnPosition.position;
                 bulletObj.transform.rotation = bulletSpawnPosition.rotation;
                 bulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                bulletObj.tag = this.gameObject.tag;
                 bulletObj.SetActive(true);
             }
             else
             {
                 GameObject newBulletObj = (GameObject)Instantiate(burstBullet, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
+                newBulletObj.tag = this.gameObject.tag;
                 bulletPool.Add(newBulletObj);
             }
             yield return new WaitForSeconds(burstSpeed);

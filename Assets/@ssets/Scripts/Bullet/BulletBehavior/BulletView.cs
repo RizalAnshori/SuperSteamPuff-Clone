@@ -16,6 +16,8 @@ public class BulletView : MonoBehaviour {
     void OnDisable()
     {
         trailRenderer.enabled = false;
+        trailRenderer.Clear();
+        Debug.Log("False");
     }
     
 	//// Use this for initialization

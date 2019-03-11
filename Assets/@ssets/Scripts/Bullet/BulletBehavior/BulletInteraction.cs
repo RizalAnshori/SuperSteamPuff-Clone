@@ -1,30 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletInteraction : MonoBehaviour {
+public class BulletInteraction : MonoBehaviour, IDamageable {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public BulletModel model;
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("PowerUp"))
         {
-            var powerUpModel = other.gameObject.GetComponent<PowerUpModel>();
-            powerUpModel.target = GetComponent<BulletModel>().owner;
+            if(other.gameObject.GetComponent<PowerUpModel>() != null)
+            {
+                var powerUpModel = other.gameObject.GetComponent<PowerUpModel>();
+                powerUpModel.target = GetComponent<BulletModel>().owner;
+            }
+            else
+            {
+                Debug.Log("Null");
+            }
         }
-        gameObject.SetActive(false);
+        else
+        {
+            other.gameObject.GetComponent<IDamageable>().Damage(model.Damage,this.gameObject);
+            //Debug.Log(other.gameObject.name);
+        }
     }
 
     void OnBecameInvisible()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public void Damage(int _DamageAmount, GameObject _DamageSender)
     {
         this.gameObject.SetActive(false);
     }

@@ -44,12 +44,14 @@ public class SpreadWeapon : MonoBehaviour,IWeapon {
                 bulletObj.transform.position = bulletSpawnPosition[i].position;
                 bulletObj.transform.rotation = bulletSpawnPosition[i].rotation;
                 bulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                bulletObj.tag = this.gameObject.tag;
                 bulletObj.SetActive(true);
             }
             else
             {
                 GameObject newBulletObj = (GameObject)Instantiate(spreadBullet, bulletSpawnPosition[i].position, bulletSpawnPosition[i].rotation);
                 newBulletObj.GetComponent<BulletModel>().owner = weaponOwnerPos;
+                newBulletObj.tag = this.gameObject.tag;
                 bulletPool.Add(newBulletObj);
             }
         }
