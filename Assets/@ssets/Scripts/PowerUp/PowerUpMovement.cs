@@ -4,19 +4,57 @@ using UnityEngine;
 
 public class PowerUpMovement : MonoBehaviour {
 
-    public float powerUpSpeed;
+    [SerializeField]PowerUpModel model;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
+    float _floatingSpeed;
+
+    void OnEnable()
+    {
+        DetectInitialPosition();
+    }
+
 	// Update is called once per frame
 	void Update () {
         Move();
 	}
 
+    void DetectInitialPosition()
+    {
+        if (transform.position.y < 0)
+        {
+            _floatingSpeed = model.floatingSpeed * -1;
+        }
+        else
+        {
+            _floatingSpeed = model.floatingSpeed;
+        }
+    }
+
     void Move()
     {
-        transform.Translate(Vector3.down * powerUpSpeed * Time.deltaTime);
+        if(model.isHit)
+        {
+            ChasingMove();
+        }
+        else
+        {
+            FloatingMove();
+        }
+    }
+
+    void FloatingMove()
+    {
+        transform.Translate(Vector3.down * _floatingSpeed * Time.deltaTime);
+    }
+
+    void ChasingMove()
+    {
+        Vector3 target = model.target.position;
+        Vector3 dist = target - transform.position;
+
+        var angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.Slerp(transform.rotation, (Quaternion.AngleAxis(angle, Vector3.forward)), model.turningSpeed * Time.deltaTime);
+
+        transform.Translate(Vector3.up * model.chaseSpeed * Time.deltaTime);
     }
 }

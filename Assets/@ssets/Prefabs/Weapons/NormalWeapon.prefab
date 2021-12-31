@@ -80,8 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488ba1ec9b6d27b4384e77afac7be97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponId: normal
   weaponOwnerPos: {fileID: 0}
-  bullet: {fileID: 1978342437602702, guid: e7edc42e363edc445b4416350c5013b9, type: 2}
-  bulletSpawnPosition:
-  - {fileID: 4688547150508846}
+  weaponId: normal
+  normalBullet: {fileID: 1978342437602702, guid: e7edc42e363edc445b4416350c5013b9,
+    type: 2}
+  bulletSpawnPosition: {fileID: 4688547150508846}
+  coolDownTime: 0.3
