@@ -5,6 +5,7 @@ This project is a learning project that clones [Super Steam Puff by Weyrdworks](
 * [Installation](#installation)
 * [How To Play](#how-to-play)
 * [Game Rules](#game-rules)
+* [Target Learning](#target-learning)
 
 ## Installation :
 **How to install from your android device?**
@@ -16,3 +17,10 @@ This project is a learning project that clones [Super Steam Puff by Weyrdworks](
 **How to install from your PC?**
 1. [You can download APK file from the release tab.](https://github.com/RizalAnshori/SuperSteamPuff-Clone/releases/)
 2. [Then You can use this tutorial for complete step.](https://www.wikihow.com/Install-APK-Files-from-a-PC-on-Android)
+
+## Learning Target :
+- [x] Deployable to android
+- [x] Implement [Interface](https://learn.unity.com/tutorial/interfaces) for handling weapon power-up
+- [x] Implement simple AI as the opponent
+- [ ] Implement Multiplayer (user as a host)
+- [ ] Implement Multiplayer (using dedicated server)
